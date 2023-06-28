@@ -69,7 +69,7 @@ extension Bundle {
     static let testBundle: Bundle = {
         #if compiler(>=5.7)
             // Fixed in Xcode 14 beta 4
-            return Bundle.module
+            return Bundle.main
         #else
             // This is needed because `Bundle.module` will not work in tests.
             // https://roundwallsoftware.com/swift-package-testing/

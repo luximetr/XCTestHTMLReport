@@ -45,7 +45,11 @@ struct ScreenshotFlowAttachment: HTML {
     let className: String
 
     var htmlTemplate: String {
-        "<img class=\"\(className)\" src=\"[[SRC]]\" id=\"screenshot-[[FILENAME]]\"/>"
+        if className == "screenshot-tail" {
+            return "<img onclick=\"onClickImage(this)\" class=\"\(className)\" src=\"[[SRC]]\" id=\"screenshot-[[FILENAME]]\"/>"
+        } else {
+            return "<img class=\"\(className)\" src=\"[[SRC]]\" id=\"screenshot-[[FILENAME]]\"/>"
+        }
     }
 
     var htmlPlaceholderValues: [String: String] {

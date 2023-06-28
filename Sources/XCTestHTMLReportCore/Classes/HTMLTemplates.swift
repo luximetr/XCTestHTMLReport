@@ -460,6 +460,10 @@ struct HTMLTemplates
         background-color: white;
         height: 350px;
     }
+  
+    .clicked-image {
+        border: 2px solid green;
+    }
 
     #content {
       height: 100%;
@@ -1050,6 +1054,22 @@ struct HTMLTemplates
       selectedElement(el);
       setDisplayToElementsWithSelector('#logs', 'none');
       setDisplayToElementsWithSelector('.tests', 'flex');
+    }
+    
+    function onClickImage(el) {
+      fetch(`http://localhost:3000/snaphot/replace?src=${el.src}`, { method: 'POST' })
+        .then(response => {
+          if (response.statusText == "OK") {
+            el.classList.add('clicked-image');
+            console.log('File replaced successfully');
+          } else {
+            console.error('Error replacing file:', response);
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          console.error('Error replacing file:', error);
+        });
     }
 
     document.querySelectorAll('.device-info')[0].classList.add(\"selected\");
